@@ -1,6 +1,12 @@
 name: poi-ci
 
-on: [push]
+on:
+  push:
+    paths:
+      - 'apis/poi/**'
+  pull_request:
+    paths:
+      - 'apis/poi/**'
 
 defaults:
   run:
@@ -24,3 +30,8 @@ jobs:
       - name: Test
         run: dotnet test --no-restore --verbosity normal
         working-directory: apis/poi/tests/UnitTests
+      - name: Create issue
+        if: ${{failure() }}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
