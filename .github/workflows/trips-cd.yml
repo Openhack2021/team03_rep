@@ -1,8 +1,8 @@
 name: build_image_trips
 on:
   push:
-#    paths:
-#      - "apis/trips/**"
+    paths:
+      - "apis/trips/**"
 
 
 

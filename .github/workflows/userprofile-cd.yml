@@ -1,8 +1,8 @@
 name: build_image_userprofile
 on:
   push:
-#    paths:
-#      - "apis/userprofile/**"
+    paths:
+      - "apis/userprofile/**"
 
 
 jobs:

@@ -1,8 +1,8 @@
 name: build_image_user-java
 on:
   push:
-#    paths:
-#      - "apis/user-java/**"
+    paths:
+      - "apis/user-java/**"
 
 
 jobs:
