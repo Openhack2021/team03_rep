@@ -26,8 +26,10 @@ jobs:
           tag: ${{ github.sha }}
           branch: main
   deploy:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -40,8 +42,10 @@ jobs:
           slot-name: 'staging'
           images: 'openhackew34zd68acr.azurecr.io/devopsoh/api-poi:${{ github.sha }}'
   check:
+    needs: [deploy]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -58,8 +62,10 @@ jobs:
           APPSERVICE: openhackew34zd68poi
           SERVICE: poi
   swap:
+    needs: [check]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Login to Azure
         uses: azure/login@v1
         with:
