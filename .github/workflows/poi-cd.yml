@@ -4,9 +4,9 @@ on:
 #    paths:
 #      - "apis/poi/**"
 
-#defaults:
-#  run:
-#    working-directory: apis/poi/web
+defaults:
+  run:
+    working-directory: apis/poi/web
 
 jobs:
   build:
@@ -23,5 +23,4 @@ jobs:
           registry: ${{ secrets.registry }}
           repository: devopsoh
           image: api-poi
-          folder: apis/poi/web
           tag: ${{ github.sha }}
