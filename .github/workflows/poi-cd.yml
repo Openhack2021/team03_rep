@@ -1,0 +1,37 @@
+name: build_image_poi
+on:
+  push:
+#    paths:
+#      - "apis/poi/**"
+
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: ACR build
+        id: acr
+        uses: azure/acr-build@v1
+        with:
+          service_principal: ${{ secrets.service_principal }}
+          service_principal_password: ${{ secrets.service_principal_password }}
+          tenant: ${{ secrets.tenant }}
+          registry: ${{ secrets.registry }}
+          repository: devopsoh
+          image: api-poi
+          folder: apis/poi/web
+          tag: ${{ github.sha }}
+          branch: main
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'openhackew34zd68poi'
+          images: 'openhackew34zd68acr.azurecr.io/devopsoh/api-poi:${{ github.sha }}'
