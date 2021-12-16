@@ -4,9 +4,7 @@ on:
 #    paths:
 #      - "apis/poi/**"
 
-defaults:
-  run:
-    working-directory: apis/poi/web
+
 
 jobs:
   build:

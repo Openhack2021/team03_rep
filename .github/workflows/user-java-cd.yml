@@ -4,9 +4,6 @@ on:
 #    paths:
 #      - "apis/user-java/**"
 
-defaults:
-  run:
-    working-directory: apis/user-java/web
 
 jobs:
   build:
@@ -23,6 +20,6 @@ jobs:
           registry: ${{ secrets.registry }}
           repository: devopsoh
           image: api-user-java
-          folder: apis/user-java/web
+          folder: apis/user-java
           tag: ${{ github.sha }}
           branch: main

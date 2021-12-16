@@ -4,9 +4,7 @@ on:
 #    paths:
 #      - "apis/trips/**"
 
-defaults:
-  run:
-    working-directory: apis/trips/web
+
 
 jobs:
   build:
@@ -23,6 +21,6 @@ jobs:
           registry: ${{ secrets.registry }}
           repository: devopsoh
           image: api-trips
-          folder: apis/trips/web
+          folder: apis/trips
           tag: ${{ github.sha }}
           branch: main

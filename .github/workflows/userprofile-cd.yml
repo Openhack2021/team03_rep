@@ -4,9 +4,6 @@ on:
 #    paths:
 #      - "apis/userprofile/**"
 
-defaults:
-  run:
-    working-directory: apis/userprofile/web
 
 jobs:
   build:
@@ -23,6 +20,6 @@ jobs:
           registry: ${{ secrets.registry }}
           repository: devopsoh
           image: api-userprofile
-          folder: apis/userprofile/web
+          folder: apis/userprofile
           tag: ${{ github.sha }}
           branch: main
