@@ -1,0 +1,21 @@
+name: build_image_poi
+on:
+  push:
+#    paths:
+#      - "apis/poi/**"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ACR build
+        working-directory: apis/poi/web 
+        id: acr
+        uses: azure/acr-build@v1
+        with:
+          service_principal: ${{ secrets.service_principal }}
+          service_principal_password: ${{ secrets.service_principal_password }}
+          tenant: ${{ secrets.tenant }}
+          registry: ${{ secrets.registry }}
+          repository: devopsoh
+          image: api-poi
+          tag: ${{ github.sha }}
