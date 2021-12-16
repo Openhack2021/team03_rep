@@ -1,0 +1,28 @@
+name: build_image_trips
+on:
+  push:
+#    paths:
+#      - "apis/trips/**"
+
+defaults:
+  run:
+    working-directory: apis/trips/web
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: ACR build
+        id: acr
+        uses: azure/acr-build@v1
+        with:
+          service_principal: ${{ secrets.service_principal }}
+          service_principal_password: ${{ secrets.service_principal_password }}
+          tenant: ${{ secrets.tenant }}
+          registry: ${{ secrets.registry }}
+          repository: devopsoh
+          image: api-trips
+          folder: apis/trips/web
+          tag: ${{ github.sha }}
+          branch: main

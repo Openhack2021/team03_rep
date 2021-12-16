@@ -1,0 +1,28 @@
+name: build_image_userprofile
+on:
+  push:
+#    paths:
+#      - "apis/userprofile/**"
+
+defaults:
+  run:
+    working-directory: apis/userprofile/web
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: ACR build
+        id: acr
+        uses: azure/acr-build@v1
+        with:
+          service_principal: ${{ secrets.service_principal }}
+          service_principal_password: ${{ secrets.service_principal_password }}
+          tenant: ${{ secrets.tenant }}
+          registry: ${{ secrets.registry }}
+          repository: devopsoh
+          image: api-userprofile
+          folder: apis/userprofile/web
+          tag: ${{ github.sha }}
+          branch: main
