@@ -35,4 +35,27 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'openhackew34zd68poi'
+          slot-name: 'staging'
           images: 'openhackew34zd68acr.azurecr.io/devopsoh/api-poi:${{ github.sha }}'
+
+      - name: Check       
+        run: |
+         chmod +x ./scripts/Check.sh
+         ./scripts/Check.sh
+        continue-on-error: false
+        timeout-minutes: 10
+        shell: bash
+        env:
+          RESOURCEGROUP: openhackew34zd68rg
+          APPSERVICE: openhackew34zd68poi
+          SERVICE: poi
+
+      - name: Swap 
+        run: |
+         chmod +x ./scripts/Swap.sh
+         ./scripts/Swap.sh
+        shell: bash
+        env:
+          RESOURCEGROUP: openhackew34zd68rg
+          APPSERVICE: openhackew34zd68poi
+         
