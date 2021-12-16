@@ -1,7 +1,7 @@
-set -eux pipefail
-
-if [ -n "$RESOURCEGROUP" ]
-if [ -n "$APPSERVICE" ]
+#set -eux pipefail
+#
+#if [ -n "$RESOURCEGROUP" ]
+#if [ -n "$APPSERVICE" ]
 
 
 #export RESOURCEGROUP="openhackew34zd68rg"
