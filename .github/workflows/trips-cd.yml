@@ -1,6 +1,7 @@
 name: build_image_trips
 on:
   push:
+    branches: [main]
     paths:
       - "apis/trips/**"
 
@@ -24,3 +25,14 @@ jobs:
           folder: apis/trips
           tag: ${{ github.sha }}
           branch: main
+          
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'openhackew34zd68trips'
+          images: 'openhackew34zd68acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}'

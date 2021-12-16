@@ -1,8 +1,9 @@
 name: build_image_poi
 on:
   push:
-#    paths:
-#      - "apis/poi/**"
+    branches: [main]
+    paths:
+      - "apis/poi/**"
 
 
 
