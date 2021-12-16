@@ -3,12 +3,16 @@ on:
   push:
 #    paths:
 #      - "apis/poi/**"
+
+defaults:
+  run:
+    working-directory: apis/poi/web
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: ACR build
-        working-directory: apis/poi/web 
         id: acr
         uses: azure/acr-build@v1
         with:
