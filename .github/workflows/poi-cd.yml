@@ -38,8 +38,7 @@ jobs:
           slot-name: 'staging'
           images: 'openhackew34zd68acr.azurecr.io/devopsoh/api-poi:${{ github.sha }}'
 
-      - name: Check 
-        uses: sergeysova/jq-action@v2
+      - name: Check       
         run: |
          chmod +x ./scripts/Check.sh
          ./scripts/Check.sh
@@ -52,7 +51,6 @@ jobs:
           SERVICE: poi
 
       - name: Swap 
-        uses: sergeysova/jq-action@v2
         run: |
          chmod +x ./scripts/Swap.sh
          ./scripts/Swap.sh
