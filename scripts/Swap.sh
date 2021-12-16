@@ -1,4 +1,4 @@
-set -euxo pipefail
+set -eux pipefail
 
 if [ -n "$RESOURCEGROUP" ]
 if [ -n "$APPSERVICE" ]
