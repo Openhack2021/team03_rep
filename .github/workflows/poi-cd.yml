@@ -23,5 +23,6 @@ jobs:
           registry: ${{ secrets.registry }}
           repository: devopsoh
           image: api-poi
+          folder: apis/poi/web
           tag: ${{ github.sha }}
           branch: main
