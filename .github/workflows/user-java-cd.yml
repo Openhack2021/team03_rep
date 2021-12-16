@@ -1,6 +1,7 @@
 name: build_image_user-java
 on:
   push:
+    branches: [main]
     paths:
       - "apis/user-java/**"
 
@@ -23,3 +24,14 @@ jobs:
           folder: apis/user-java
           tag: ${{ github.sha }}
           branch: main
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'openhackew34zd68userjava'
+          images: 'openhackew34zd68acr.azurecr.io/devopsoh/api-user-java:${{ github.sha }}'          
