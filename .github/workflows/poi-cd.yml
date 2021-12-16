@@ -24,3 +24,4 @@ jobs:
           repository: devopsoh
           image: api-poi
           tag: ${{ github.sha }}
+          branch: main
